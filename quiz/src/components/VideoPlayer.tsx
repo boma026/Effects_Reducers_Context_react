@@ -19,6 +19,6 @@ export const VideoPlayer = ({src, isPlaying}: Props) => {
     })
 
     return (
-        <video src={src} loop playsInline />
+        <video ref={videoTag} src={src} loop playsInline muted/>
     )
 }
