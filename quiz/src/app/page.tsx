@@ -2,10 +2,29 @@
 
 import { Square } from "@/components/Square";
 import { VideoPlayer } from "@/components/VideoPlayer";
+import { ListReducer } from "@/reducers/listReducer";
+import { Item } from "@/types/Item";
 import Image from "next/image";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 
 export default function Home() {
+
+const [list, dispatch] = useReducer(ListReducer, [])
+
+const [addField, setAddField] = useState ("");
+
+const handleAddButton = () => {
+  if(addField.trim() === "") return false;
+
+  dispatch({
+    type: "add",
+    payload: {
+      text: addField.trim()
+    }
+  })
+
+  setAddField("")
+}
 
 const [playing, setPlaying] = useState(true);
 
@@ -31,6 +50,28 @@ const [show, setShow] = useState(false);
           <Square/>
         }
       </div>
+
+      <div className="container mx-auto">
+        <h1 className="text-center text-4xl my-4">Lista de tarefas</h1>
+        <div className="max-w-2xl flex rounded-md border border-gray-400 p-4 my-4">
+          <input
+            type="text"
+            className="flex-1 rounded-md border border-white p-3 bg-transparent text-white"
+            placeholder="Digite um item"
+            value={addField}
+            onChange={e => setAddField(e.target.value)}
+            />
+            <button
+              className="p-4"> Adcionar
+            </button>
+        </div>
+        <ul>
+          {list.map(item => (
+            <li key={item.id}>{item.text}</li>
+          ))}
+        </ul>
+      </div>
+        
     </div>
   );
 }
