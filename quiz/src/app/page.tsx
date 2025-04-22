@@ -26,6 +26,37 @@ const handleAddButton = () => {
   setAddField("")
 }
 
+const handleDoneCheckbox = (id: number) => {
+  dispatch({
+    type: "toggleDone",
+    payload: {
+      id,
+
+    }
+  })
+}
+
+const handleEdit = (id: number) => {
+  const item = list.find(it => it.id === id);
+  if(!item) return false 
+  const newText = window.prompt("Editar tarefa", item.text); 
+  if(!newText || newText.trim() === "") return false
+
+  dispatch({
+    type: "editText",
+    payload: {
+      id,
+      newText
+    }
+  })
+}
+
+const handleRemove = (id: number) => {
+  dispatch({
+    type: "remove",
+    payload: { id }
+  })
+
 const [playing, setPlaying] = useState(true);
 
 const [show, setShow] = useState(false);
@@ -62,12 +93,25 @@ const [show, setShow] = useState(false);
             onChange={e => setAddField(e.target.value)}
             />
             <button
-              className="p-4"> Adcionar
+              className="p-4" onClick={handleAddButton}> Adcionar
             </button>
         </div>
-        <ul>
+        <ul className="max-w-2xl mx-auto">
           {list.map(item => (
-            <li key={item.id}>{item.text}</li>
+            <li 
+              key={item.id}
+              className="flex items-center p-3 my-3 border-b border-gray-700"
+            >
+              <input
+                type="checkbox"
+                className="w-6 h-6 mr-4"
+                checked={item.done}
+                onChange={() => handleDoneCheckbox(item.id)}
+              />
+              <p className="flex-1 text-lg">{item.text}</p>
+              <button onClick={() => handleEdit(item.id)} className="mx-4 text-white hover:text-gray-500">Editar</button>
+              <button onClick={() => handleRemove(item.id)}className="mx-4 text-white hover:text-gray-500">Excluir</button>  
+              </li>
           ))}
         </ul>
       </div>

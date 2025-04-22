@@ -46,11 +46,16 @@ export const ListReducer = (list: Item[], action: ListActions) => {
               })
         case "toggleDone":
             return list.map(t => {
-                if (t.id === action.payload.id) t.done = !t.done;
-                    return t;
-              })
+                if (t.id === action.payload.id) 
+                    { return {
+                        ...t,
+                        done: !t.done
+                    };
+                }
+                return t;
+              });
         case "remove":   
-            list.filter(t => t.id !== action.payload.id);  
+            return list.filter(t => t.id !== action.payload.id);  
         default:
             return list;
     }
