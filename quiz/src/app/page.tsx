@@ -3,7 +3,7 @@
 import { Header } from "@/components/Header";
 import { Square } from "@/components/Square";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { CountContext, CountInitialData } from "@/context/CountContext";
+import { CountContext} from "@/context/CountContext";
 import { ListReducer } from "@/reducers/listReducer";
 import { Item } from "@/types/Item";
 import Image from "next/image";
@@ -14,6 +14,8 @@ export default function Home() {
   const [addField, setAddField] = useState("");
   const [playing, setPlaying] = useState(true);
   const [show, setShow] = useState(false);
+
+  const [onlineCount, setOnlineCount] = useState(92);
 
   const handleAddButton = () => {
     if (addField.trim() === "") return;
@@ -112,7 +114,7 @@ export default function Home() {
         </div>
         {/* uso do context*/}
         <div className="container mx-auto">
-          <CountContext.Provider value={CountInitialData}>
+          <CountContext.Provider value={{ onlineCount, setOnlineCount }}>
             <Header />
           </CountContext.Provider>
           

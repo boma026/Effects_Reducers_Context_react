@@ -2,9 +2,16 @@ import { CountContext } from "@/context/CountContext"
 import { useContext } from "react"
 
 export const OnlineUsers = () => {
-    const count = useContext(CountContext)
+    const countCtx = useContext(CountContext)
+
+    const handleBanAll = () => {
+        countCtx?.setOnlineCount(0);
+    }
     
     return(
-        <p>Online: {count}</p>
+        <>
+            <p>Online: {countCtx?.onlineCount}</p>
+            <button onClick={handleBanAll}>Banir todos</button>
+        </>
     )
 }
