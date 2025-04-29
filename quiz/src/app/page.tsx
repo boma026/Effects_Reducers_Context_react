@@ -15,7 +15,7 @@ export default function Home() {
   const [playing, setPlaying] = useState(true);
   const [show, setShow] = useState(false);
 
-  const [onlineCount, setOnlineCount] = useState(92);
+  const [onlineCount, setOnlineCount] = useState(45);
 
   const handleAddButton = () => {
     if (addField.trim() === "") return;
