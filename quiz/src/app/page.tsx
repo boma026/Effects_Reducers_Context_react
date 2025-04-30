@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Square } from "@/components/Square";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { CountContext} from "@/context/CountContext";
+import { UserProvider } from "@/context/UserContext";
 import { ListReducer } from "@/reducers/listReducer";
 import { Item } from "@/types/Item";
 import Image from "next/image";
@@ -59,6 +60,7 @@ export default function Home() {
   
     return (
       // Uso real do effect
+      <UserProvider>
       <div className="">
         <div className="border border-white p-3 mb-4">
           <p className="text-2xl text-blue-400">{playing? "Rodando" : "Pausado"}</p>
@@ -120,5 +122,6 @@ export default function Home() {
           
         </div>
       </div>
+      </UserProvider>
     );
   }
