@@ -76,13 +76,16 @@ export default function Home() {
             />
           </>
         </ExampleArea>
-        <div className="">
-          <button onClick={() => setShow(!show)}>Mostrar/Ocultar</button>
 
-          {show &&
-            <Square/>
-          }
-        </div>
+        <ExampleArea title="2. exemplo do cleanup">
+          <>
+            <button onClick={() => setShow(!show)}>Mostrar/Ocultar</button>
+
+            {show &&
+              <Square/>
+            }
+          </>
+          </ExampleArea>
 
         <div className="container mx-auto">
           <h1 className="text-center text-4xl my-4">Lista de tarefas</h1>

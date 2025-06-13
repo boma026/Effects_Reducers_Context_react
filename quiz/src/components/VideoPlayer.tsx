@@ -10,12 +10,7 @@ export const VideoPlayer = ({src, isPlaying}: Props) => {
     const videoTag = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        if(isPlaying){
-            videoTag.current?.play();
-        }
-        else{
-            videoTag.current?.pause();
-        }
+       isPlaying? videoTag.current?.play() : videoTag.current?.pause();
     })
 
     return (
