@@ -1,5 +1,6 @@
 "use client"
 
+import { ExampleArea } from "@/components/ExampleArea";
 import { Header } from "@/components/Header";
 import { Square } from "@/components/Square";
 import { VideoPlayer } from "@/components/VideoPlayer";
@@ -60,18 +61,21 @@ export default function Home() {
   
     return (
       // Uso real do effect
+      
       <UserProvider>
-      <div className="">
-        <div className="border border-white p-3 mb-4">
-          <p className="text-2xl text-blue-400">{playing? "Rodando" : "Pausado"}</p>
-          <button className="bg-blue-400 rounded-md p-3 text-black" onClick={() => setPlaying(!playing)}>Play/Pause</button>
-        </div> 
+        <ExampleArea title="1. video de exemplo">
+          <>
+            <div className="border border-white p-3 mb-4">
+              <p className="text-2xl text-blue-400">{playing? "Rodando" : "Pausado"}</p>
+              <button className="bg-blue-400 rounded-md p-3 text-black" onClick={() => setPlaying(!playing)}>Play/Pause</button>
+            </div> 
 
-        <VideoPlayer
-        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-        isPlaying={playing}
-        />
-
+            <VideoPlayer
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            isPlaying={playing}
+            />
+          </>
+        </ExampleArea>
         <div className="">
           <button onClick={() => setShow(!show)}>Mostrar/Ocultar</button>
 
@@ -121,7 +125,6 @@ export default function Home() {
           </CountContext.Provider>
           
         </div>
-      </div>
       </UserProvider>
     );
   }
