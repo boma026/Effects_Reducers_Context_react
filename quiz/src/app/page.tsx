@@ -28,16 +28,34 @@ export default function Home() {
     setAddField("");
   }
 
- const handleDoneCheckbox = (tarefaId : number) => {
+  const handleDoneCheckbox = (tarefaId : number) => {
     dispatch({
-      type:"edit",
-      payload: {tarefaId, }
-    }
-    )
+      type: "toggle",
+      payload: tarefaId
+    })
+  }
+
+  const handleEdit = (tarefaId : number) => {
+    const item = list.find((it) => it.id === tarefaId);
+    if (!item) return false;
+
+    const newText = window.prompt("Editar tarefa", item.text) //Pra abrir uma janela contendo o texto anterior para mudá-lo
+    if(!newText || newText?.trim() === "") return false;
+
+    dispatch({
+      type: "edit",
+      payload: { id: tarefaId, newText: newText }
+    })
+  }
+
+  const handleRemove = (tarefaId: number) => {
+    dispatch({
+      type: "remove",
+      payload: tarefaId
+    })
   }
 
     return (
-      // Uso real do effect
       
       <UserProvider>
         <ExampleArea title="1. video de exemplo">

@@ -35,7 +35,6 @@ const removeItem = (id:number) => {
 
 
 import { Item } from "@/types/Item";
-import { useState } from "react";
 
 type AddAction = {
     type: "add" //type de açao que será realizada
@@ -81,10 +80,10 @@ export const ListReducer = (list: Item[] /*Lista recebida*/, action: ListActions
                 return item
             })
 
-        case "toggle":
+        case "toggle"  :
             return list.map((item) => {
                 if(item.id === action.payload)
-                    item.done = !item.done
+                    return {...item, done: !item.done}
                 return item;
             })
 
