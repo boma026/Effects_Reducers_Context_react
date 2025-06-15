@@ -1,14 +1,10 @@
 "use client"
 
 import { ExampleArea } from "@/components/ExampleArea";
-import { Header } from "@/components/Header";
 import { Square } from "@/components/Square";
 import { VideoPlayer } from "@/components/VideoPlayer";
-import { CountContext} from "@/context/CountContext";
-import { UserProvider } from "@/context/UserContext";
 import { ListReducer } from "@/reducers/listReducer";
 import { Item } from "@/types/Item";
-import Image from "next/image";
 import { useReducer, useState } from "react";
 
 export default function Home() {
@@ -56,8 +52,7 @@ export default function Home() {
   }
 
     return (
-      
-      <UserProvider>
+      <>
         <ExampleArea title="1. video de exemplo">
           <>
             <div className="border border-white p-3 mb-4">
@@ -117,14 +112,7 @@ export default function Home() {
               </ul>
               
             </div>
-        </ExampleArea>
-        {/* uso do context*/}
-        <div className="container mx-auto">
-          <CountContext.Provider value={{ onlineCount, setOnlineCount }}>
-            <Header />
-          </CountContext.Provider>
-          
-        </div>
-      </UserProvider>
+          </ExampleArea>
+        </>
     );
-  }
+}
